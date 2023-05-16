@@ -27,13 +27,15 @@ const connectDB = async () => {
       database: process.env.POSTGRES_DB,
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
-      ssl: getSSLConfig(process.env.SERVER_MODE),
+      ssl: getSSLConfig(process.env.SERVER_MODE ?? 'local'),
       synchronize: true
     };
     await createConnection(options);
-    console.log('MongoDB Connected...');
+    console.log('PostgreSQL Connected...');
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    }
     // Exit process with failure
     process.exit(1);
   }
