@@ -4,6 +4,7 @@ import { Response, Request } from 'express';
 import TodoService from '../services/todo.service';
 import { UpdateTodoDto, CreateTodoDto } from '../dto/todo';
 import { ITodo } from '../types/todos.type';
+import { todoValidate } from '../validations/todo.validations';
 
 export class TodoController {
   constructor(private todoService: TodoService) {}
@@ -47,6 +48,8 @@ export class TodoController {
     try {
       const { id } = req.params;
       const todoDto: UpdateTodoDto = req.body;
+      const errors = todoValidate(todoDto);
+      if (errors) throw errors;
       const todo = await this.todoService.updateTodoById(id, todoDto);
       console.log('Update Todo');
       res.json(todo);
@@ -59,8 +62,10 @@ export class TodoController {
   async createTodo(req: Request, res: Response) {
     try {
       const todoDto: CreateTodoDto = req.body;
+      const errors = todoValidate(todoDto);
+      if (errors) throw errors;
       const newTodo = await this.todoService.createTodo(todoDto);
-      console.log('Created new Lesson');
+      console.log('Created new Todo');
       res.json(newTodo);
     } catch (err) {
       console.log(err);
