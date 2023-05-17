@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
-import { createConnection, DataSourceOptions } from 'typeorm';
+import { DataSourceOptions, DataSource } from 'typeorm';
+import { etities } from '../entities';
 
 function getSSLConfig(env: string) {
   const configs: { [key: string]: boolean | { [key: string]: boolean } } = {
@@ -21,7 +22,7 @@ const connectDB = async () => {
       port: Number(process.env.POSTGRES_PORT),
       logging: ['query', 'error'],
       type: 'postgres',
-      entities: ['dist/**/*.entity.{ts,js}'],
+      entities: etities,
       migrations: ['dist/migrations/**/*.{ts,js}'],
       subscribers: ['src/subscriber/**/*.ts'],
       database: process.env.POSTGRES_DB,
@@ -30,7 +31,9 @@ const connectDB = async () => {
       ssl: getSSLConfig(process.env.SERVER_MODE ?? 'local'),
       synchronize: true
     };
-    await createConnection(options);
+    const PostgresDataSource = new DataSource(options);
+    await PostgresDataSource.initialize();
+    // await createConnection(options);
     console.log('PostgreSQL Connected...');
   } catch (err) {
     if (err instanceof Error) {

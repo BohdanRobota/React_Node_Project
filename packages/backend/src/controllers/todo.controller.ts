@@ -1,13 +1,71 @@
+/* eslint-disable no-console */
+
 import { Response, Request } from 'express';
 import TodoService from '../services/todo.service';
+import { UpdateTodoDto, CreateTodoDto } from '../dto/todo';
+import { ITodo } from '../types/todos.type';
 
 export class TodoController {
   constructor(private todoService: TodoService) {}
 
-  async getAllTodo(_: Request, res: Response) {
-    // TODO: Write your implementation here
-    const todos = await this.todoService.findAll();
-    res.send(todos);
+  async getAllTodos(_: Request, res: Response) {
+    try {
+      const todos: ITodo[] = await this.todoService.getAllTodos();
+      console.log('Get all Todos');
+      res.json(todos);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json(err);
+    }
+  }
+
+  async getTodoById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const todo: ITodo | null = await this.todoService.getTodoById(id);
+      console.log('Get Todo');
+      res.json(todo);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json(err);
+    }
+  }
+
+  async deleteTodoById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const todo = await this.todoService.deleteTodoById(id);
+      console.log('Delete Todo');
+      res.json(todo);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json(err);
+    }
+  }
+
+  async updateTodoById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const todoDto: UpdateTodoDto = req.body;
+      const todo = await this.todoService.updateTodoById(id, todoDto);
+      console.log('Update Todo');
+      res.json(todo);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json(err);
+    }
+  }
+
+  async createTodo(req: Request, res: Response) {
+    try {
+      const todoDto: CreateTodoDto = req.body;
+      const newTodo = await this.todoService.createTodo(todoDto);
+      console.log('Created new Lesson');
+      res.json(newTodo);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json(err);
+    }
   }
 }
 

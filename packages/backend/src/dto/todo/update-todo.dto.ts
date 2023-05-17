@@ -1,8 +1,9 @@
-// TODO: Put a real interfaces here
-
-export interface ITodo {
+export class UpdateTodoDto {
   title: string;
+
   description: string;
+
   isComplete: boolean;
+
   isPrivate: boolean;
 }
