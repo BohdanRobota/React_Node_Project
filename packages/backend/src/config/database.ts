@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { DataSourceOptions, DataSource } from 'typeorm';
+import { DataSourceOptions, createConnection } from 'typeorm';
 import { etities } from '../entities';
 
 function getSSLConfig(env: string) {
@@ -31,9 +31,7 @@ const connectDB = async () => {
       ssl: getSSLConfig(process.env.SERVER_MODE ?? 'local'),
       synchronize: true
     };
-    const PostgresDataSource = new DataSource(options);
-    await PostgresDataSource.initialize();
-    // await createConnection(options);
+    await createConnection(options);
     console.log('PostgreSQL Connected...');
   } catch (err) {
     if (err instanceof Error) {

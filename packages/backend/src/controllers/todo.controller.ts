@@ -11,7 +11,7 @@ export class TodoController {
 
   async getAllTodos(_: Request, res: Response) {
     try {
-      const todos: ITodo[] = await this.todoService.getAllTodos();
+      const todos: ITodo[] = await this.todoService.getAll();
       console.log('Get all Todos');
       res.json(todos);
     } catch (err) {
@@ -23,7 +23,7 @@ export class TodoController {
   async getTodoById(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const todo: ITodo | null = await this.todoService.getTodoById(id);
+      const todo: ITodo | null = await this.todoService.getById(id);
       console.log('Get Todo');
       res.json(todo);
     } catch (err) {
@@ -35,7 +35,7 @@ export class TodoController {
   async deleteTodoById(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const todo = await this.todoService.deleteTodoById(id);
+      const todo = await this.todoService.deleteById(id);
       console.log('Delete Todo');
       res.json(todo);
     } catch (err) {
@@ -50,7 +50,7 @@ export class TodoController {
       const todoDto: UpdateTodoDto = req.body;
       const errors = todoValidate(todoDto);
       if (errors) throw errors;
-      const todo = await this.todoService.updateTodoById(id, todoDto);
+      const todo = await this.todoService.updateById(id, todoDto);
       console.log('Update Todo');
       res.json(todo);
     } catch (err) {
@@ -64,7 +64,7 @@ export class TodoController {
       const todoDto: CreateTodoDto = req.body;
       const errors = todoValidate(todoDto);
       if (errors) throw errors;
-      const newTodo = await this.todoService.createTodo(todoDto);
+      const newTodo = await this.todoService.create(todoDto);
       console.log('Created new Todo');
       res.json(newTodo);
     } catch (err) {

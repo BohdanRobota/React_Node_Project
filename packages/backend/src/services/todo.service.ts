@@ -6,24 +6,24 @@ import { ITodo } from '../types/todos.type';
 import { UpdateTodoDto, CreateTodoDto } from '../dto/todo';
 
 export default class TodoService {
-  async getAllTodos(): Promise<ITodo[]> {
+  async getAll(): Promise<ITodo[]> {
     return Todo.find();
   }
 
-  async getTodoById(id: string): Promise<ITodo | null> {
+  async getById(id: string): Promise<Todo | null> {
     return Todo.findOneBy({ id });
   }
 
-  async deleteTodoById(id: string) {
+  async deleteById(id: string) {
     await Todo.delete({ id });
     return { message: 'Todo has been successfully deleted', id };
   }
 
-  async createTodo(todoDto: CreateTodoDto): Promise<BaseEntity> {
+  async create(todoDto: CreateTodoDto): Promise<BaseEntity> {
     return Todo.create(todoDto as object).save();
   }
 
-  async updateTodoById(id: string, todoDto: UpdateTodoDto) {
+  async updateById(id: string, todoDto: UpdateTodoDto) {
     await Todo.update(id, todoDto);
     return { message: 'Todo has been successfully updated', id, todoDto };
   }
