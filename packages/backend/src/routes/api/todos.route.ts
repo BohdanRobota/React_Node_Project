@@ -2,13 +2,26 @@ import { Router } from 'express';
 import todoController from '../../controllers/todo.controller';
 import { isExist } from '../../middlewares/isExist.middleware';
 import { Todo } from '../../entities/Todo.entity';
+import { tryCatch } from '../../middlewares/tryCatch.middleware';
 
 const todosRouter: Router = Router();
 
-todosRouter.get('', todoController.getAllTodos.bind(todoController));
-todosRouter.get('/:id', isExist(Todo), todoController.getTodoById.bind(todoController));
-todosRouter.post('/', todoController.createTodo.bind(todoController));
-todosRouter.delete('/:id', isExist(Todo), todoController.deleteTodoById.bind(todoController));
-todosRouter.put('/:id', isExist(Todo), todoController.updateTodoById.bind(todoController));
+todosRouter.get('', tryCatch(todoController.getAllTodos.bind(todoController)));
+todosRouter.get(
+  '/:id',
+  tryCatch(isExist(Todo)),
+  tryCatch(todoController.getTodoById.bind(todoController))
+);
+todosRouter.post('/', tryCatch(todoController.createTodo.bind(todoController)));
+todosRouter.delete(
+  '/:id',
+  tryCatch(isExist(Todo)),
+  tryCatch(todoController.deleteTodoById.bind(todoController))
+);
+todosRouter.put(
+  '/:id',
+  tryCatch(isExist(Todo)),
+  tryCatch(todoController.updateTodoById.bind(todoController))
+);
 
 export default todosRouter;
