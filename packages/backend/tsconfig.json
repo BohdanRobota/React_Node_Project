@@ -1,6 +1,7 @@
 {
   "typeRoots": ["@types/node", "./src/types"],
   "compilerOptions": {
+    "lib": ["ES2021.Promise"],
     "strict": true,
     "module": "commonjs",
     "declaration": true,

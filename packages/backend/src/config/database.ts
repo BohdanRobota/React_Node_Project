@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
-import { createConnection, DataSourceOptions } from 'typeorm';
+import { DataSourceOptions, createConnection } from 'typeorm';
+import { etities } from '../entities';
 
 function getSSLConfig(env: string) {
   const configs: { [key: string]: boolean | { [key: string]: boolean } } = {
@@ -21,19 +22,21 @@ const connectDB = async () => {
       port: Number(process.env.POSTGRES_PORT),
       logging: ['query', 'error'],
       type: 'postgres',
-      entities: ['dist/**/*.entity.{ts,js}'],
+      entities: etities,
       migrations: ['dist/migrations/**/*.{ts,js}'],
       subscribers: ['src/subscriber/**/*.ts'],
       database: process.env.POSTGRES_DB,
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
-      ssl: getSSLConfig(process.env.SERVER_MODE),
+      ssl: getSSLConfig(process.env.SERVER_MODE ?? 'local'),
       synchronize: true
     };
     await createConnection(options);
-    console.log('MongoDB Connected...');
+    console.log('PostgreSQL Connected...');
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    }
     // Exit process with failure
     process.exit(1);
   }

@@ -1,13 +1,13 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import 'dotenv/config';
-
+import { errorHandler } from './middlewares/ErrorHandling.middleware';
 import AppRouter from './routes';
 import connectDB from './config/database';
 
 const app = express();
 const router = new AppRouter(app);
-// Connect to MongoDB
+
 connectDB();
 
 // Express configuration
@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.init();
+app.use(errorHandler);
 
 const port = app.get('port');
 // eslint-disable-next-line no-console
