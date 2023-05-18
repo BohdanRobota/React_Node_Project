@@ -3,8 +3,6 @@
 import { Response, Request } from 'express';
 import TodoService from '../services/todo.service';
 import { ITodo } from '../types/todos.type';
-import { createTodoValidate, updateTodoValidate } from '../validations/todo.validations';
-import ApiError from '../error/ApiError';
 
 export class TodoController {
   constructor(private todoService: TodoService) {}
@@ -28,16 +26,12 @@ export class TodoController {
 
   async updateTodoById(req: Request, res: Response) {
     const { id } = req.params;
-    const { error, value } = updateTodoValidate(req.body);
-    if (error) throw ApiError.validationError(error);
-    const updatedTodo = await this.todoService.updateById(id, value);
+    const updatedTodo = await this.todoService.updateById(id, req.body);
     res.json(updatedTodo);
   }
 
   async createTodo(req: Request, res: Response) {
-    const { error, value } = createTodoValidate(req.body);
-    if (error) throw ApiError.validationError(error);
-    const newTodo = await this.todoService.create(value);
+    const newTodo = await this.todoService.create(req.body);
     res.json(newTodo);
   }
 }
