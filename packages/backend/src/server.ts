@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.init();
+
 app.use(errorHandler);
 
 const port = app.get('port');
