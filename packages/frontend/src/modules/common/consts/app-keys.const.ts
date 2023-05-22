@@ -17,6 +17,12 @@ export const BACKEND_KEYS = {
   TODOS: 'todos/'
 };
 
+export const MEDIA_QUERIES = {
+  isMobile: '(min-width: 320px) and (max-width: 767px)',
+  isTablet: '(min-width: 768px) and (max-width: 1199px)',
+  isDesktop: '(min-width: 1200px)'
+};
+
 export const enum RouteNames {
   TODOS = '/todos',
   LOGIN = '/login',
