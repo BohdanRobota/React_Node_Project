@@ -1,8 +1,10 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
-import { MainRouter } from '../navigation';
+import { ChakraProvider } from '@chakra-ui/react';
+import { AppRouter } from '../navigation/AppRouter';
 
 import * as theme from '../theme';
 import * as Styled from './app.styled';
@@ -23,10 +25,14 @@ const queryClient = new QueryClient({
 const AppContainer = () => (
   <ThemeProvider theme={theme}>
     <Styled.GlobalStyles />
-    <QueryClientProvider client={queryClient}>
-      <MainRouter />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider>
+          <AppRouter />
+        </ChakraProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </BrowserRouter>
   </ThemeProvider>
 );
 

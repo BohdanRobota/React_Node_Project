@@ -1,12 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePageContainer from '../home';
-import { APP_KEYS } from '../common/consts';
+import { IRoute } from '../common/types/router.type';
+import Todos from '../pages/Todos';
+import Login from '../pages/Login';
+import TodoIdPage from '../pages/TodoIdPage';
+import { RouteNames } from '../common/consts/app-keys.const';
 
-export const MainRouter = () => (
-  <Router>
-    <Switch>
-      <Route component={HomePageContainer} path={APP_KEYS.ROUTER_KEYS.ROOT} />
-    </Switch>
-  </Router>
-);
+export const publicRoutes: IRoute[] = [{ path: RouteNames.LOGIN, component: Login }];
+
+export const privateRoutes: IRoute[] = [
+  { path: RouteNames.TODOS, component: Todos },
+  { path: RouteNames.TODOS_ID, component: TodoIdPage }
+];

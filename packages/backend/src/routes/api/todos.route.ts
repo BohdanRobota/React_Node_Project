@@ -27,7 +27,7 @@ todosRouter.delete(
   tryCatch(isExist(Todo)),
   tryCatch(todoController.deleteTodoById.bind(todoController))
 );
-todosRouter.put(
+todosRouter.patch(
   '/:id',
   tryCatch(uuidValidationMiddleware()),
   tryCatch(isExist(Todo)),
