@@ -11,10 +11,16 @@ function MyModal({ children, visible, setVisible }: MyModalProps) {
   if (visible) {
     rootClasses.push(classes.active);
   }
+  const setVisibleHandler = () => {
+    setVisible(false);
+  };
+  const stopPropagationHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
   return (
     /* eslint-disable */
-    <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
-      <div className={classes.myModalContent} onClick={(e) => e.stopPropagation()}>
+    <div className={rootClasses.join(' ')} onClick={setVisibleHandler}>
+      <div className={classes.myModalContent} onClick={stopPropagationHandler}>
         {children}
       </div>
     </div>

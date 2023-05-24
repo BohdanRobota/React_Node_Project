@@ -12,6 +12,7 @@ import {
   TodoContentContainer
 } from './TodoItem.styled';
 import { useMatchMedia } from '../../../common/hooks/useMatchMedia';
+import { RouteNames } from '../../../common/consts/app-keys.const';
 
 interface TodoItemProps extends ITodo {}
 export const TodoItem = ({ id, title, description, isComplete }: TodoItemProps) => {
@@ -19,6 +20,15 @@ export const TodoItem = ({ id, title, description, isComplete }: TodoItemProps) 
   const { mutate: deleteTodo } = useDeleteTodoQuery(id);
   const { mutate: toggleStatus } = useToggleTodoStatusQuery();
   const navigate = useNavigate();
+  const deleteTodoHandler = () => {
+    deleteTodo();
+  };
+  const toggleStatusHandler = () => {
+    toggleStatus({ id, status: { isComplete: !isComplete } });
+  };
+  const openTodoHandler = () => {
+    navigate(RouteNames.OPEN_TODO + id);
+  };
   return (
     <TodoContainer isMobile={isMobile}>
       <TodoContentContainer>
@@ -30,21 +40,13 @@ export const TodoItem = ({ id, title, description, isComplete }: TodoItemProps) 
         </TodoDescription>
       </TodoContentContainer>
       <TodoBtnsContainer>
-        <Button colorScheme="teal" size="md" marginRight="20px" onClick={() => deleteTodo()}>
+        <Button colorScheme="teal" size="md" marginRight="20px" onClick={deleteTodoHandler}>
           Delete
         </Button>
-        <Button
-          colorScheme="teal"
-          size="md"
-          marginRight="60px"
-          onClick={() => navigate(`/todos/${id}`)}
-        >
+        <Button colorScheme="teal" size="md" marginRight="60px" onClick={openTodoHandler}>
           Open
         </Button>
-        <Stack
-          direction="row"
-          onClick={() => toggleStatus({ id, status: { isComplete: !isComplete } })}
-        >
+        <Stack direction="row" onClick={toggleStatusHandler}>
           <Switch colorScheme="teal" size="lg" isChecked={isComplete} />
         </Stack>
       </TodoBtnsContainer>

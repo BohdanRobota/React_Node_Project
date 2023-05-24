@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Stack, Switch } from '@chakra-ui/react';
-import { useFormik } from 'formik';
+import { useFormik, FormikHelpers } from 'formik';
 import { useAddTodoQuery } from '../../hooks/useAddTodoQuery';
 import MyModal from '../../../common/components/UI/MyModal/MyModal';
 import { initialValues } from '../../../validations/todo/initialValues';
@@ -24,15 +24,21 @@ function AddTodoForm() {
   const mediaInfo = useMatchMedia();
   const { mutate: createTodo } = useAddTodoQuery();
 
+  const onSubmit = (data: ITodoCeateDto, actions: FormikHelpers<ITodoCeateDto>) => {
+    createTodo(data);
+    actions.resetForm();
+    setModal(false);
+  };
+
   const { handleBlur, handleChange, values, handleSubmit, errors, touched } = useFormik({
     initialValues,
     validationSchema: todoValidationSchema,
-    onSubmit: (data: ITodoCeateDto, actions) => {
-      createTodo(data);
-      actions.resetForm();
-      setModal(false);
-    }
+    onSubmit
   });
+
+  const modalOpenHandler = () => {
+    setModal(true);
+  };
 
   return (
     <>
@@ -41,7 +47,7 @@ function AddTodoForm() {
         size="md"
         marginTop="30px"
         marginBottom="30px"
-        onClick={() => setModal(true)}
+        onClick={modalOpenHandler}
       >
         Add Todo
       </Button>

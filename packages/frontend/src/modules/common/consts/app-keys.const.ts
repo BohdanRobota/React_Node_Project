@@ -25,6 +25,7 @@ export const MEDIA_QUERIES = {
 
 export const enum RouteNames {
   TODOS = '/todos',
+  OPEN_TODO = '/todos/',
   LOGIN = '/login',
   TODOS_ID = '/todos/:id'
 }
