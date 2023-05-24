@@ -13,12 +13,16 @@
   padding: 25px;
   background: white;
   border-radius: 16px;
-  height: 200px;
-  min-width: 600px;
+  min-width: 50%;
 }
-
 .active {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .myModalContent {
+    min-width: 80%;
+  }
 }

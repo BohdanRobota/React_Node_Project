@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { HttpService } from '../../common/services/http.service';
-import { ITodo, ITodoCeateDto, ITodoUpdateDto } from '../types/todo.type';
+import { ITodo, ITodoCeateDto, ITodoUpdateDto, IToggleTodo } from '../types/todo.type';
 import { BACKEND_KEYS } from '../../common/consts/app-keys.const';
 
 export class TodoService extends HttpService {
@@ -23,10 +23,10 @@ export class TodoService extends HttpService {
     });
   }
 
-  toggleTodo(id: string, isComplete: boolean): Promise<AxiosResponse<ITodo>> {
+  toggleTodoStatus(toggleData: IToggleTodo): Promise<AxiosResponse<ITodo>> {
     return this.patch({
-      url: BACKEND_KEYS.TODOS + id,
-      data: { isComplete }
+      url: BACKEND_KEYS.TODOS + toggleData.id,
+      data: toggleData.status
     });
   }
 

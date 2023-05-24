@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppRouter } from '../navigation/AppRouter';
+import { MainContainer } from '../common/containers/AppContainer/MainContainer';
 
 import * as theme from '../theme';
 import * as Styled from './app.styled';
@@ -28,7 +29,9 @@ const AppContainer = () => (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <ChakraProvider>
-          <AppRouter />
+          <MainContainer>
+            <AppRouter />
+          </MainContainer>
         </ChakraProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

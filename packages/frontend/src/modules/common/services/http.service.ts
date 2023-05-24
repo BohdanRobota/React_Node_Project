@@ -19,10 +19,6 @@ export class HttpService {
     };
   }
 
-  // private extractUrlAndDataFromConfig({ data, url, ...configWithoutDataAndUrl }) {
-  //   return configWithoutDataAndUrl;
-  // }
-
   get(config: IConfig, withAuth = true) {
     if (withAuth) {
       config.headers = {
