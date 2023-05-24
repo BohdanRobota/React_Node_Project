@@ -8,24 +8,24 @@ export const STORAGE_KEYS = {
 
 // React-query keys
 export const QUERY_KEYS = {
-  EXAMPLE: 'EXAMPLE',
-  TOKEN: 'TOKEN',
-  STATISTIC: 'statistic',
-  TRENDING: 'trending'
+  TODOS: 'todos'
 };
 
 // Backend Routes
 export const BACKEND_KEYS = {
-  EXAMPLE: 'example',
-  COURSES: 'courses',
-  ARTICLES: 'articles',
-  STATISTIC: 'statistic',
-  TRENDING: 'trending',
-  FEATURED_ARTICLES: 'featured_articles'
+  BASE_URL: 'http://localhost:4200',
+  TODOS: 'todos/'
 };
 
-export const ROUTER_KEYS = {
-  ROOT: '/',
-  HOME: 'home',
-  AUTHORIZED: 'authorized'
+export const MEDIA_QUERIES = {
+  isMobile: '(min-width: 320px) and (max-width: 767px)',
+  isTablet: '(min-width: 768px) and (max-width: 1199px)',
+  isDesktop: '(min-width: 1200px)'
 };
+
+export const enum RouteNames {
+  TODOS = '/todos',
+  OPEN_TODO = '/todos/',
+  LOGIN = '/login',
+  TODOS_ID = '/todos/:id'
+}

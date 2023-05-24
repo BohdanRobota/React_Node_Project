@@ -34,6 +34,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: Poppins, sans-serif;
     min-height: 100vh;
+    width: 100%;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;

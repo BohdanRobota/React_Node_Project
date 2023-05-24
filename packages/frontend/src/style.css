@@ -4,7 +4,6 @@ html {
 
 html,
 body {
-  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -20,4 +19,27 @@ iframe {
 .swiper {
   left: 125px;
   overflow: visible;
+}
+.swiper-container {
+  width: 480px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.input-error {
+  box-shadow: 0 0 2px 1px red;
+}
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
 }
