@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { errorHandler } from './middlewares/ErrorHandling.middleware';
 import AppRouter from './routes';
 import connectDB from './config/database';
@@ -19,6 +20,7 @@ connectDB();
 app.set('port', process.env.PORT || 4200);
 app.use(cors(corsConfig));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.init();

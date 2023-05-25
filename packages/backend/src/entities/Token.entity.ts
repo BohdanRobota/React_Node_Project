@@ -1,10 +1,13 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User extends BaseEntity {
+export class Token extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column('uuid')
+  userId: string;
+
   @Column()
-  email: string;
+  refreshToken: string;
 }

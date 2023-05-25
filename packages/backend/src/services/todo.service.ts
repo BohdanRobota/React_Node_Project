@@ -5,7 +5,7 @@ import { Todo } from '../entities/Todo.entity';
 import { ITodo } from '../types/todos.type';
 import { UpdateTodoDto, CreateTodoDto } from '../dto/todo';
 
-export default class TodoService {
+class TodoService {
   async getAll(): Promise<ITodo[]> {
     return Todo.find();
   }
@@ -28,3 +28,5 @@ export default class TodoService {
     return { message: 'Todo has been successfully updated', id, todoDto };
   }
 }
+
+export default new TodoService(); // eslint-disable-line

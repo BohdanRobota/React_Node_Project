@@ -5,7 +5,7 @@ import TodoService from '../services/todo.service';
 import { ITodo } from '../types/todos.type';
 
 export class TodoController {
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: typeof TodoService) {}
 
   async getAllTodos(_: Request, res: Response) {
     const todos: ITodo[] = await this.todoService.getAll();
@@ -36,5 +36,5 @@ export class TodoController {
   }
 }
 
-const todoController = new TodoController(new TodoService());
+const todoController = new TodoController(TodoService);
 export default todoController;

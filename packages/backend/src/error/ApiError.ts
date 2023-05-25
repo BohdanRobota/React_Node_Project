@@ -21,5 +21,9 @@ class ApiError extends Error {
   static validationError(errors: ValidationError) {
     return new ApiError(ErrorCodes.BAD_REQUEST, 'Validation Error', errors.details);
   }
+
+  static unavthorizedError(message?: string) {
+    return new ApiError(ErrorCodes.UNATHORIZED, message ?? 'User is not authorized');
+  }
 }
 export default ApiError;

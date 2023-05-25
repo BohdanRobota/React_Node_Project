@@ -19,8 +19,8 @@ function MyModal({ children, visible, setVisible }: MyModalProps) {
   };
   return (
     /* eslint-disable */
-    <div className={rootClasses.join(' ')} onClick={setVisibleHandler}>
-      <div className={classes.myModalContent} onClick={stopPropagationHandler}>
+    <div className={rootClasses.join(' ')} onMouseDown={setVisibleHandler}>
+      <div className={classes.myModalContent} onMouseDown={stopPropagationHandler}>
         {children}
       </div>
     </div>

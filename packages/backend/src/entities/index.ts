@@ -1,4 +1,5 @@
 import { Todo } from './Todo.entity';
-import { User } from './User';
+import { Token } from './Token.entity';
+import { User } from './User.entity';
 
-export const etities = [Todo, User];
+export const etities = [Todo, User, Token];
