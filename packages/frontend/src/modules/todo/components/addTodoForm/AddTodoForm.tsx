@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Stack, Switch } from '@chakra-ui/react';
 import { useFormik, FormikHelpers } from 'formik';
 import { useAddTodoQuery } from '../../hooks/useAddTodoQuery';
@@ -15,11 +15,15 @@ import {
   TodoFormTitle,
   TodoFormPrivateBox,
   TodoFormTextArea,
-  TodoForm
+  TodoForm,
+  ButtonContainer
 } from './AddTodoForm.styled';
 import { useMatchMedia } from '../../../common/hooks/useMatchMedia';
+import { Context } from '../../../app';
+import { observer } from 'mobx-react-lite';
 
 function AddTodoForm() {
+  const { store } = useContext(Context);
   const [modal, setModal] = useState(false);
   const mediaInfo = useMatchMedia();
   const { mutate: createTodo } = useAddTodoQuery();
@@ -42,15 +46,26 @@ function AddTodoForm() {
 
   return (
     <>
-      <Button
-        colorScheme="teal"
-        size="md"
-        marginTop="30px"
-        marginBottom="30px"
-        onClick={modalOpenHandler}
-      >
-        Add Todo
-      </Button>
+      <ButtonContainer>
+        <Button
+          colorScheme="teal"
+          size="md"
+          marginTop="30px"
+          marginBottom="30px"
+          onClick={modalOpenHandler}
+        >
+          Add Todo
+        </Button>
+        <Button
+          colorScheme="teal"
+          size="md"
+          marginTop="30px"
+          marginBottom="30px"
+          onClick={() => store.logout()}
+        >
+          Logout
+        </Button>
+      </ButtonContainer>
       <MyModal visible={modal} setVisible={setModal}>
         <TodoFormContainer {...mediaInfo}>
           <TodoFormTitle>Create new Todo</TodoFormTitle>
@@ -105,4 +120,4 @@ function AddTodoForm() {
   );
 }
 
-export default AddTodoForm;
+export default observer(AddTodoForm);

@@ -1,4 +1,5 @@
 import { useToast } from '@chakra-ui/react';
+import { AxiosError } from 'axios';
 
 export const useToastError = () => {
   const toast = useToast();
@@ -7,6 +8,13 @@ export const useToastError = () => {
       toast({
         status: 'error',
         title: err.message,
+        position: 'top'
+      });
+    }
+    if (err instanceof AxiosError) {
+      toast({
+        status: 'error',
+        title: err.response?.data.message,
         position: 'top'
       });
     }

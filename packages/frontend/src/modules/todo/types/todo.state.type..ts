@@ -1,0 +1,1 @@
+export type TodoState = 'all' | 'private' | 'completed';

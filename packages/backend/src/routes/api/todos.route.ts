@@ -16,6 +16,7 @@ todosRouter.get(
   tryCatch(isExist(Todo)),
   tryCatch(todoController.getTodoById.bind(todoController))
 );
+
 todosRouter.post(
   '/',
   tryCatch(validationMiddleware(createTodoValidate)),

@@ -8,7 +8,8 @@ export const useFindByIdTodoQuery = (id: string) => {
   const todoService = new TodoService();
   return useQuery({
     queryFn: () => todoService.getTodoById(id),
-    queryKey: [QUERY_KEYS.TODOS, id],
-    onError: showError
+    queryKey: ['todos', id],
+    onError: showError,
+    staleTime: 5000
   });
 };

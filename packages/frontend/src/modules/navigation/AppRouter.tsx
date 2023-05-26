@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { RouteNames } from '../common/consts/app-keys.const';
 import { privateRoutes, publicRoutes } from '.';
+import { Context } from '../app';
+import { observer } from 'mobx-react-lite';
+import Home from '../pages/Home';
 
-export const AppRouter = () => {
-  const isAuth = true;
-  return isAuth ? (
+const AppRouter = () => {
+  const { store } = useContext(Context);
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      store.checkAuth();
+      console.log(store.user.isActivated);
+    }
+  }, []);
+
+  return store.isAuth && store.user.isActivated ? (
     <Routes>
       {privateRoutes.map((route) => (
         <Route path={route.path} Component={route.component} key={route.path} />
@@ -17,7 +27,8 @@ export const AppRouter = () => {
       {publicRoutes.map((route) => (
         <Route path={route.path} Component={route.component} key={route.path} />
       ))}
-      <Route path="*" element={<Navigate to={RouteNames.LOGIN} replace />} />
+      <Route path="*" element={<Navigate to={RouteNames.HOME} replace />} />
     </Routes>
   );
 };
+export default observer(AppRouter);

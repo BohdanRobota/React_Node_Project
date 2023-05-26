@@ -5,9 +5,9 @@ import TodoService from '../services/todo.service';
 import { ITodo } from '../types/todos.type';
 
 export class TodoController {
-  constructor(private todoService: typeof TodoService) {}
+  constructor(private todoService: typeof TodoService) { }
 
-  async getAllTodos(_: Request, res: Response) {
+  async getAllTodos(req: Request, res: Response) {
     const todos: ITodo[] = await this.todoService.getAll();
     res.send(todos);
   }

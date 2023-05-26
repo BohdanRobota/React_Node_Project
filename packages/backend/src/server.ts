@@ -10,7 +10,8 @@ import connectDB from './config/database';
 const app = express();
 const router = new AppRouter(app);
 const corsConfig = {
-  origin: 'http://localhost:3000',
+  origin: process.env.CLIENT_URL,
+  credentials: true,
   optionsSuccessStatus: 200
 };
 
@@ -18,9 +19,9 @@ connectDB();
 
 // Express configuration
 app.set('port', process.env.PORT || 4200);
+app.use(cookieParser());
 app.use(cors(corsConfig));
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.init();

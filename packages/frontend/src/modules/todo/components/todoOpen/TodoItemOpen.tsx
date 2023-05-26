@@ -50,8 +50,8 @@ export const TodoItemOpen = ({ id, title, description, isComplete, isPrivate }: 
         <Button
           colorScheme="teal"
           size="md"
-          width="250px"
-          marginLeft="50px"
+          width={isMobile ? '150px' : '250px'}
+          marginLeft={isMobile ? '20px' : '50px'}
           onClick={() => navigate(RouteNames.TODOS)}
         >
           Back

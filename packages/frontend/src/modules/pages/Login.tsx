@@ -1,5 +1,8 @@
-import React from 'react';
+import LoginForm from '../auth/components/authorization/authorization';
+import { observer } from 'mobx-react-lite';
 
-const Login = () => <div>Login Page</div>;
+const Login = () => {
+  return <LoginForm />;
+};
 
-export default Login;
+export default observer(Login);

@@ -8,14 +8,19 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'swiper/css';
 import { TabletContainer } from './TodoListTablet.styled';
 import { TodoItem } from '../todoItem/TodoItem';
+import { TodoState } from '../../types/todo.state.type.';
 
-export const TodoListTablet = () => {
-  const { data, isLoading, isSuccess } = useTodosQuery();
+interface TodoListTabletProps {
+  state: TodoState;
+}
+export const TodoListTablet = ({ state }: TodoListTabletProps) => {
+  const { data, isLoading, isSuccess } = useTodosQuery(state);
+
   const settings = {
     dots: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 2,
+    slidesToScroll: 2,
     initialSlide: 0,
     infinite: true,
     responsive: [

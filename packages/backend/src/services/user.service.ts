@@ -20,7 +20,7 @@ class UserService {
     await User.save(newUser);
     await MailService.sendActivationMail(
       email,
-      `${process.env.API_URL}/api/activate/${activationLink}`
+      `${process.env.API_URL}/api/user/activate/${activationLink}`
     );
     const userWithTokens = this.generateAndSaveTokens(newUser as User);
     return userWithTokens;

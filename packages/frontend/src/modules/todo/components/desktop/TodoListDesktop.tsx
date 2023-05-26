@@ -11,9 +11,13 @@ import {
   THead,
   TBody
 } from './TodoListDesctop.styled';
+import { TodoState } from '../../types/todo.state.type.';
 
-export const TodoListDesktop = () => {
-  const { data, isLoading, isSuccess } = useTodosQuery();
+interface TodoListDesctopProps {
+  state: TodoState;
+}
+export const TodoListDesktop = ({ state }: TodoListDesctopProps) => {
+  const { data, isLoading, isSuccess } = useTodosQuery(state);
 
   if (isLoading) {
     return <Spinner />;

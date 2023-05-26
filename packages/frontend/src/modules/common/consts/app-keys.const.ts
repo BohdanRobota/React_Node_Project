@@ -14,7 +14,11 @@ export const QUERY_KEYS = {
 // Backend Routes
 export const BACKEND_KEYS = {
   BASE_URL: 'http://localhost:4200',
-  TODOS: 'todos/'
+  USER: 'user/',
+  TODOS: 'todos/',
+  LOGIN: 'login/',
+  LOGOUT: 'logout/',
+  REGISTER: 'register/'
 };
 
 export const MEDIA_QUERIES = {
@@ -27,5 +31,10 @@ export const enum RouteNames {
   TODOS = '/todos',
   OPEN_TODO = '/todos/',
   LOGIN = '/login',
-  TODOS_ID = '/todos/:id'
+  LOGOUT = '/logout',
+  REGISTER = '/register',
+  TODOS_ID = '/todos/:id',
+  HOME = '/',
+  ACTIVATE = '/activate',
+  CHANGE_PASSWORD = '/change-password'
 }

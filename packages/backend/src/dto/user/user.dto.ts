@@ -9,13 +9,13 @@ export default class UserDto {
 
   public activationLink?: string;
 
-  public isActivate: boolean;
+  public isActivated: boolean;
 
   constructor(model: User) {
     this.activationLink = model?.activationLink;
     this.password = model?.password;
     this.email = model.email;
     this.id = model.id;
-    this.isActivate = model.isActivated;
+    this.isActivated = model.isActivated;
   }
 }

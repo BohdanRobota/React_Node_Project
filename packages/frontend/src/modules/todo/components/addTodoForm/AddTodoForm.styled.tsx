@@ -45,6 +45,13 @@ export const TodoFormTextArea = styled.textarea`
   font-family: 'Roboto', sans-serif;
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+`;
+
 export const TodoFormInput = styled.input``;
 
 export const TodoFormMessageBox = styled.div`

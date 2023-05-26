@@ -7,7 +7,7 @@ export class HttpService {
     private baseUrl: string | undefined = BACKEND_KEYS.BASE_URL,
     private fetchingService: AxiosStatic = axios,
     private apiVersion: string = 'api'
-  ) {}
+  ) { }
 
   private getFullApiUrl(url: string) {
     return `${this.baseUrl}/${this.apiVersion}/${url}`;
@@ -15,8 +15,13 @@ export class HttpService {
 
   private populateTokenToHeaderConfig() {
     return {
-      Authorization: localStorage.getItem('token')
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Coocie: localStorage.getItem('refreshToken')
     };
+  }
+
+  private extractUrlAndDataFromConfig({ data, url, ...configWithoutDataAndUrl }: IConfig) {
+    return configWithoutDataAndUrl;
   }
 
   get(config: IConfig, withAuth = true) {
@@ -26,7 +31,8 @@ export class HttpService {
         ...this.populateTokenToHeaderConfig()
       };
     }
-    return this.fetchingService.get(this.getFullApiUrl(config.url));
+    console.log(this.getFullApiUrl(config.url));
+    return this.fetchingService.get(this.getFullApiUrl(config.url), config?.headers);
   }
 
   patch(config: IConfig, withAuth = true) {
@@ -36,7 +42,7 @@ export class HttpService {
         ...this.populateTokenToHeaderConfig()
       };
     }
-    return this.fetchingService.patch(this.getFullApiUrl(config.url), config.data);
+    return this.fetchingService.patch(this.getFullApiUrl(config.url), config.data, config?.headers);
   }
 
   post(config: IConfig, withAuth = true) {
@@ -46,12 +52,13 @@ export class HttpService {
         ...this.populateTokenToHeaderConfig()
       };
     }
-    return this.fetchingService.post(this.getFullApiUrl(config.url), config.data);
+    return this.fetchingService.post(this.getFullApiUrl(config.url), config.data, config?.headers);
   }
 
   delete(config: IConfig, withAuth = true) {
     if (withAuth) {
       config.headers = {
+        withCredentials: true,
         ...config.headers,
         ...this.populateTokenToHeaderConfig()
       };

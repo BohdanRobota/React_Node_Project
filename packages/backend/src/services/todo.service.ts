@@ -14,6 +14,11 @@ class TodoService {
     return Todo.findOneBy({ id });
   }
 
+  async getCompleted() {
+    return Todo.find({ where: { isComplete: true } });
+  }
+
+
   async deleteById(id: string) {
     await Todo.delete({ id });
     return { message: 'Todo has been successfully deleted', id };
