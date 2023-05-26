@@ -13,11 +13,7 @@ export const TodoContainer = styled.div<{
   align-items: flex-start;
   min-width: 100%;
   max-width: 100%;
-<<<<<<< Updated upstream
   padding: ${({ isMobile }) => (isMobile ? '20px' : '50px')};
-=======
-  padding: ${({ isMobile }) => (isMobile ? '20px' : '50px')}
->>>>>>> Stashed changes
   min-height: ${({ isMobile }) => (isMobile ? '200px' : '400px')};
 `;
 

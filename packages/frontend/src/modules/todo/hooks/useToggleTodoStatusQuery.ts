@@ -10,7 +10,7 @@ export const useToggleTodoStatusQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (toggleData: IToggleTodo) => todoService.toggleTodoStatus(toggleData),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['todos'] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] }),
     onError: showError
   });
 };

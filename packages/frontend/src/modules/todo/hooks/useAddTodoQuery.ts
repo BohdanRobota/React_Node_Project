@@ -11,7 +11,7 @@ export const useAddTodoQuery = () => {
   return useMutation({
     mutationFn: (data: ITodoCeateDto) => todoService.createTodo(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
     },
     onError: showError
   });

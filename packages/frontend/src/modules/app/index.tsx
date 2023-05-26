@@ -29,7 +29,6 @@ const queryClient = new QueryClient({
 });
 
 const AppContainer = () => (
-<<<<<<< Updated upstream
   <Context.Provider value={{ store }}>
     <ThemeProvider theme={theme}>
       <Styled.GlobalStyles />
@@ -45,21 +44,6 @@ const AppContainer = () => (
       </BrowserRouter>
     </ThemeProvider>
   </Context.Provider>
-=======
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider theme={theme}>
-      <Styled.GlobalStyles />
-      <BrowserRouter>
-        <ChakraProvider>
-          <MainContainer>
-            <AppRouter />
-          </MainContainer>
-        </ChakraProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </BrowserRouter>
-    </ThemeProvider>
-  </QueryClientProvider>
->>>>>>> Stashed changes
 );
 
 export default AppContainer;

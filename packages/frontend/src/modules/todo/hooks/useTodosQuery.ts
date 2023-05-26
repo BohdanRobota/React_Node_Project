@@ -8,14 +8,9 @@ export const useTodosQuery = (state: TodoState) => {
   const showError = useToastError();
   const todoService = new TodoService();
   return useQuery({
-<<<<<<< Updated upstream
     queryFn: () => todoService.getTodos(state),
     queryKey: [QUERY_KEYS.TODOS, state],
     staleTime: 5000,
-=======
-    queryFn: () => todoService.getTodos(),
-    queryKey: ['todos'],
->>>>>>> Stashed changes
     onError: showError
   });
 };

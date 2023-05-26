@@ -7,29 +7,28 @@ import { useMatchMedia } from '../common/hooks/useMatchMedia';
 
 const Home = () => {
   const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate(RouteNames.LOGIN);
+  };
+  const handleRegister = () => {
+    navigate(RouteNames.REGISTER);
+  };
+  const handleChangePassword = () => {
+    navigate(RouteNames.CHANGE_PASSWORD);
+  };
   const { isMobile } = useMatchMedia();
   return (
     <MainContainer>
       <Text marginBottom={'80px'} marginTop={'60px'} fontSize={isMobile ? '2xl' : '5xl'}>
         Todo Application
       </Text>
-      <Button
-        colorScheme="teal"
-        size="lg"
-        marginBottom={'50px'}
-        onClick={() => navigate(RouteNames.LOGIN)}
-      >
+      <Button colorScheme="teal" size="lg" marginBottom={'50px'} onClick={handleLogin}>
         Login
       </Button>
-      <Button colorScheme="teal" size="lg" onClick={() => navigate(RouteNames.REGISTER)}>
+      <Button colorScheme="teal" size="lg" onClick={handleRegister}>
         Register
       </Button>
-      <Link
-        color="teal"
-        marginTop={'40px'}
-        onClick={() => navigate(RouteNames.CHANGE_PASSWORD)}
-        fontSize={'xl'}
-      >
+      <Link color="teal" marginTop={'40px'} onClick={handleChangePassword} fontSize={'xl'}>
         Change password
       </Link>
     </MainContainer>

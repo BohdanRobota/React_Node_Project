@@ -1,3 +1,6 @@
+
+export const API_URL = `http://localhost:4200/api`;
+
 // Local storage keys
 export const STORAGE_KEYS = {
   JWT_TOKEN_STUDENT: 'JWT_TOKEN_STUDENT',

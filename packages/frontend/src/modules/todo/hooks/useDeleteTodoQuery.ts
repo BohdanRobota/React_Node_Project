@@ -10,7 +10,7 @@ export const useDeleteTodoQuery = (id: string) => {
   return useMutation({
     mutationFn: () => service.deleteTodo(id),
     onSuccess: () => {
-      client.invalidateQueries({ queryKey: ['todos'] });
+      client.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
     },
     onError: showError
   });

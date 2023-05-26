@@ -44,6 +44,10 @@ function AddTodoForm() {
     setModal(true);
   };
 
+  const handleLogout = () => {
+    store.logout();
+  };
+
   return (
     <>
       <ButtonContainer>
@@ -61,7 +65,7 @@ function AddTodoForm() {
           size="md"
           marginTop="30px"
           marginBottom="30px"
-          onClick={() => store.logout()}
+          onClick={handleLogout}
         >
           Logout
         </Button>
