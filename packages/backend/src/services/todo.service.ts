@@ -4,10 +4,13 @@ import { BaseEntity } from 'typeorm';
 import { Todo } from '../entities/Todo.entity';
 import { ITodo } from '../types/todos.type';
 import { UpdateTodoDto, CreateTodoDto } from '../dto/todo';
+import { TodoCategories, TodosQuery } from '../types/todoStatus.type';
 
 class TodoService {
-  async getAll(): Promise<ITodo[]> {
-    return Todo.find();
+  async getAll(query: TodosQuery): Promise<ITodo[]> {
+    const options: any = { where: { ...query } };
+    if (!options) delete options.where;
+    return Todo.find(options);
   }
 
   async getById(id: string): Promise<Todo | null> {

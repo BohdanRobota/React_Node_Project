@@ -16,7 +16,7 @@ import { RouteNames } from '../../../common/consts/app-keys.const';
 
 interface TodoItemProps extends ITodo {}
 export const TodoItem = ({ id, title, description, isComplete }: TodoItemProps) => {
-  const { isMobile } = useMatchMedia();
+  const { isMobile, isDesktop } = useMatchMedia();
   const { mutate: deleteTodo } = useDeleteTodoQuery(id);
   const { mutate: toggleStatus } = useToggleTodoStatusQuery();
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export const TodoItem = ({ id, title, description, isComplete }: TodoItemProps) 
     navigate(RouteNames.OPEN_TODO + id);
   };
   return (
-    <TodoContainer isMobile={isMobile}>
+    <TodoContainer isMobile={isMobile} isDesktop={isDesktop}>
       <TodoContentContainer>
         <TodoTitle>
           <Text fontSize="2xl">{title}</Text>

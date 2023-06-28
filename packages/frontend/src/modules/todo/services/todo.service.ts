@@ -1,15 +1,15 @@
 import { AxiosResponse } from 'axios';
 import { HttpService } from '../../common/services/http.service';
 import { ITodo, ITodoCeateDto, ITodoUpdateDto, IToggleTodo } from '../types/todo.type';
-import { BACKEND_KEYS } from '../../common/consts/app-keys.const';
-import { TodoState } from '../types/todo.state.type.';
+import { BACKEND_KEYS, QUERY_KEYS } from '../../common/consts/app-keys.const';
+import { TodoState, TodoStateEnum } from '../types/todo.state.type.';
 
 export class TodoService extends HttpService {
   getTodos(state: TodoState): Promise<AxiosResponse<ITodo[]>> {
-    const queries = state === 'all' ? '' : `/?completed=${state === 'completed'}`;
-    console.log(queries);
+
+    const queryUrl = state === TodoStateEnum.ALL ? '' : `/?${state}=true`;
     return this.get({
-      url: `todos${queries}`
+      url: `${QUERY_KEYS.TODOS + queryUrl}`
     });
   }
 

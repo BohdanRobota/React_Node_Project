@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { User } from './User.entity';
 
 @Entity({ name: 'todo' })
 export class Todo extends BaseEntity {
@@ -16,4 +17,8 @@ export class Todo extends BaseEntity {
 
   @Column()
   isPrivate: boolean;
+
+  @ManyToOne(() => User, (user) => user.todos)
+  @JoinColumn({ name: 'userId' })
+  user: User;
 }

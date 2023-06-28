@@ -15,7 +15,7 @@ import { useMatchMedia } from '../../../common/hooks/useMatchMedia';
 
 interface TodoItemProps extends ITodo {}
 export const TodoItemOpen = ({ id, title, description, isComplete, isPrivate }: TodoItemProps) => {
-  const { isMobile } = useMatchMedia();
+  const { isMobile, isDesktop } = useMatchMedia();
   const { mutate: toggleStatus } = useToggleTodoStatusQuery();
   const navigate = useNavigate();
   const isCompleteConst = 'isComplete';
@@ -27,7 +27,7 @@ export const TodoItemOpen = ({ id, title, description, isComplete, isPrivate }: 
     }
   };
   return (
-    <TodoContainer isMobile={isMobile}>
+    <TodoContainer isMobile={isMobile} isDesktop={isDesktop}>
       <TodoTitle>
         <Text fontSize="2xl">{title}</Text>
       </TodoTitle>

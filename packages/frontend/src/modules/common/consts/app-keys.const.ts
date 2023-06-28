@@ -39,5 +39,6 @@ export const enum RouteNames {
   TODOS_ID = '/todos/:id',
   HOME = '/',
   ACTIVATE = '/activate',
-  CHANGE_PASSWORD = '/change-password'
+  CHANGE_PASSWORD = '/change-password',
+  PROFILE = '/profile'
 }

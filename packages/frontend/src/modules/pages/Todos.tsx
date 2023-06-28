@@ -5,16 +5,14 @@ import { TodoListMobile } from '../todo/components/mobile/TodoListMobile';
 import { useMatchMedia } from '../common/hooks/useMatchMedia';
 import { TodoListTablet } from '../todo/components/tablet/TodoListTablet';
 import { TodoViewer } from '../todo/components/todoViewer/todoViewer';
+import { MainContainer } from '../common/containers/AppContainer/MainContainer';
 
 const Todos = () => {
   const { isMobile, isTablet, isDesktop } = useMatchMedia();
   return (
     <>
       <AddTodoForm />
-      {isMobile && <TodoListMobile state={'all'} />}
-      {isTablet && <TodoListTablet state={'all'} />}
-      {isDesktop && <TodoListDesktop state={'all'} />}
-      {/* <TodoViewer/> */}
+      <TodoViewer />
     </>
   );
 };

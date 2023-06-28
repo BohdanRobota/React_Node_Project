@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const TableContainer = styled.div`
-  width: 85%;
+  width: 100%;
+  margin: 0 auto;
   & tr td:nth-child(1) {
     width: 20%;
   }

@@ -58,7 +58,7 @@ function ChangePasswordForm() {
             <TodoFormInput
               id="email"
               name="email"
-              value={values.email}
+              value={values.email ? values.email : store.user.email}
               onChange={handleChange}
               onBlur={handleBlur}
               type="text"

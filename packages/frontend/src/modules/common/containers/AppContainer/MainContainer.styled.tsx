@@ -5,10 +5,11 @@ export const ContainerWrapper = styled.div<{
   isDesktop: boolean;
   isTablet: boolean;
 }>`
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
-  padding: ${({ isMobile }) => (isMobile ? '20px' : '40px')};
+  padding: ${({ isMobile }) => (isMobile ? '10px' : '20px')};
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 `;

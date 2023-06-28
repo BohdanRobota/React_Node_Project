@@ -5,7 +5,7 @@ import { ITodo } from '../../types/todo.type';
 import { useDeleteTodoQuery } from '../../hooks/useDeleteTodoQuery';
 import { useToggleTodoStatusQuery } from '../../hooks/useToggleTodoStatusQuery';
 import { TodoBtnsContainer } from '../todoItem/TodoItem.styled';
-import { Td, Tr } from './TodoListDesctop.styled';
+import { Td, Tr } from './TodoListDesktop.styled';
 import { RouteNames } from '../../../common/consts/app-keys.const';
 
 interface TodoItemProps extends ITodo {}

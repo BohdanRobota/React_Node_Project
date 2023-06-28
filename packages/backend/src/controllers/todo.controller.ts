@@ -8,7 +8,8 @@ export class TodoController {
   constructor(private todoService: typeof TodoService) { }
 
   async getAllTodos(req: Request, res: Response) {
-    const todos: ITodo[] = await this.todoService.getAll();
+    const { query } = req;
+    const todos: ITodo[] = await this.todoService.getAll(query);
     res.send(todos);
   }
 

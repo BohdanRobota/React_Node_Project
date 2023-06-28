@@ -6,6 +6,7 @@ import { tryCatch } from '../../middlewares/tryCatch.middleware';
 import { validationMiddleware } from '../../middlewares/validation.middleware';
 import { updateTodoValidate, createTodoValidate } from '../../validations/todo.validations';
 import { uuidValidationMiddleware } from '../../middlewares/uuidValidation.middleware';
+import { authMiddleware } from '../../middlewares/auth.middleware';
 
 const todosRouter: Router = Router();
 
@@ -24,12 +25,14 @@ todosRouter.post(
 );
 todosRouter.delete(
   '/:id',
+  authMiddleware,
   tryCatch(uuidValidationMiddleware()),
   tryCatch(isExist(Todo)),
   tryCatch(todoController.deleteTodoById.bind(todoController))
 );
 todosRouter.patch(
   '/:id',
+  authMiddleware,
   tryCatch(uuidValidationMiddleware()),
   tryCatch(isExist(Todo)),
   tryCatch(validationMiddleware(updateTodoValidate)),

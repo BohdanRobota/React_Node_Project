@@ -21,11 +21,14 @@ import {
 import { useMatchMedia } from '../../../common/hooks/useMatchMedia';
 import { Context } from '../../../app';
 import { observer } from 'mobx-react-lite';
+import { useNavigate } from 'react-router-dom';
+import { RouteNames } from '../../../common/consts/app-keys.const';
 
 function AddTodoForm() {
   const { store } = useContext(Context);
   const [modal, setModal] = useState(false);
   const mediaInfo = useMatchMedia();
+  const navigate = useNavigate();
   const { mutate: createTodo } = useAddTodoQuery();
 
   const onSubmit = (data: ITodoCeateDto, actions: FormikHelpers<ITodoCeateDto>) => {
@@ -44,8 +47,8 @@ function AddTodoForm() {
     setModal(true);
   };
 
-  const handleLogout = () => {
-    store.logout();
+  const handleMyProfile = () => {
+    navigate(RouteNames.PROFILE);
   };
 
   return (
@@ -65,9 +68,9 @@ function AddTodoForm() {
           size="md"
           marginTop="30px"
           marginBottom="30px"
-          onClick={handleLogout}
+          onClick={handleMyProfile}
         >
-          Logout
+          My Profile
         </Button>
       </ButtonContainer>
       <MyModal visible={modal} setVisible={setModal}>

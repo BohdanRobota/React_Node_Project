@@ -10,7 +10,7 @@ import {
   Tr,
   THead,
   TBody
-} from './TodoListDesctop.styled';
+} from './TodoListDesktop.styled';
 import { TodoState } from '../../types/todo.state.type.';
 
 interface TodoListDesctopProps {

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const TodoContainer = styled.div<{
   isMobile: boolean;
+  isDesktop: boolean;
 }>`
   display: flex;
   flex-direction: column;
@@ -13,7 +14,7 @@ export const TodoContainer = styled.div<{
   align-items: flex-start;
   min-width: 100%;
   max-width: 100%;
-  padding: ${({ isMobile }) => (isMobile ? '20px' : '50px')};
+  padding: ${({ isDesktop }) => (isDesktop ? '50px' : '20px')};
   min-height: ${({ isMobile }) => (isMobile ? '200px' : '400px')};
 `;
 
